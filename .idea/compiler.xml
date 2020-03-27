@@ -6,6 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="algorithm" />
+        <module name="concurrent" />
+        <module name="disruptor" />
+        <module name="jdbc" />
         <module name="jvm" />
         <module name="mysql" />
       </profile>

@@ -1,8 +1,6 @@
 package com.luoyan.jvm.classloader;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class BrokeDelegationTest {
 
@@ -10,7 +8,9 @@ public class BrokeDelegationTest {
 
         Class.forName("com.mysql.jdbc.Driver");
 
-        Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.13:3306/tbj?useUnicode=true&characterEncoding=GBK", "xxx", "XXX");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.13:3306/tbj?useUnicode=true&characterEncoding=GBK", "tbj", "tbj900900");
+
+
 
 
     }
