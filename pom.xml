@@ -30,6 +30,8 @@
         <module>algorithm</module>
         <module>disruptor</module>
         <module>jdbc</module>
+        <module>dubbo</module>
+        <module>zookeeper</module>
     </modules>
 
 

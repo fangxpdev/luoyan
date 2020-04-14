@@ -9,9 +9,11 @@
         <module name="algorithm" />
         <module name="concurrent" />
         <module name="disruptor" />
+        <module name="dubbo" />
         <module name="jdbc" />
         <module name="jvm" />
         <module name="mysql" />
+        <module name="zookeeper" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
