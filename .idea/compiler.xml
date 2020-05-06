@@ -2,20 +2,41 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="algorithm" />
-        <module name="concurrent" />
-        <module name="disruptor" />
+        <module name="redis" />
         <module name="dubbo" />
-        <module name="jdbc" />
         <module name="jvm" />
-        <module name="mysql" />
+        <module name="jdbc" />
+        <module name="netty" />
+        <module name="concurrent" />
+        <module name="rocketmq" />
+        <module name="algorithm" />
+        <module name="sharding" />
         <module name="zookeeper" />
+        <module name="disruptor" />
+        <module name="mysql" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="algorithm" options="-parameters" />
+      <module name="concurrent" options="-parameters" />
+      <module name="disruptor" options="-parameters" />
+      <module name="dubbo" options="-parameters" />
+      <module name="jdbc" options="-parameters" />
+      <module name="jvm" options="-parameters" />
+      <module name="mysql" options="-parameters" />
+      <module name="netty" options="-parameters" />
+      <module name="redis" options="-parameters" />
+      <module name="rocketmq" options="-parameters" />
+      <module name="sharding" options="-parameters" />
+      <module name="zookeeper" options="-parameters" />
+    </option>
   </component>
 </project>

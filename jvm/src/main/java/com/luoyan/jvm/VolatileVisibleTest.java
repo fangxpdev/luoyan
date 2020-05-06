@@ -2,7 +2,7 @@ package com.luoyan.jvm;
 
 public class VolatileVisibleTest {
 
-    public static volatile boolean flag = false;
+    public static  boolean flag = false;
 
     public static void main(String[] args) throws InterruptedException {
 
