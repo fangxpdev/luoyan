@@ -7,21 +7,28 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="redis" />
-        <module name="dubbo" />
         <module name="jvm" />
-        <module name="jdbc" />
-        <module name="netty" />
-        <module name="concurrent" />
         <module name="rocketmq" />
-        <module name="algorithm" />
-        <module name="sharding" />
-        <module name="zookeeper" />
+        <module name="redis" />
+        <module name="netty" />
         <module name="disruptor" />
+        <module name="zookeeper" />
+        <module name="sharding" />
+        <module name="spring" />
+        <module name="spring-boot" />
+        <module name="jdbc" />
+        <module name="algorithm" />
+        <module name="dubbo" />
+        <module name="concurrent" />
         <module name="mysql" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="spring-boot.main" target="1.8" />
+      <module name="spring-boot.test" target="1.8" />
+      <module name="spring-cloud.main" target="1.8" />
+      <module name="spring-cloud.test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -36,6 +43,8 @@
       <module name="redis" options="-parameters" />
       <module name="rocketmq" options="-parameters" />
       <module name="sharding" options="-parameters" />
+      <module name="spring" options="-parameters" />
+      <module name="spring-boot" options="-parameters" />
       <module name="zookeeper" options="-parameters" />
     </option>
   </component>

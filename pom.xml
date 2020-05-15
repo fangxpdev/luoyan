@@ -43,6 +43,8 @@
         <module>sharding</module>
         <module>rocketmq</module>
         <module>netty</module>
+        <module>spring</module>
+        <module>spring-boot</module>
     </modules>
 
 

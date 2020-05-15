@@ -48,18 +48,29 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.112-b16, mixed mode)
 4. 汇编层实现
    lock  comxchg(compare and exchange)
 
-   
+   CAS的是先也是这样  LOCK_IF_MP
 
 ### volatile实现
 
 1. java volatile
 2. 字节码 ACC_VOLATILE
 3. JVM内存屏障
+   加内存屏障
+   happens-before
+   as-if-serial
 4. 虚拟机实际实现  LOCK
-5. 可见性
-6. 有序性
+5. 汇编指令 lock addl $0x0,(%rsp)
+   ![image-20200513111455222](./image/volatile.png)
+   缓存一致性协议：
+   MESI    modify  exclusion  share  invaild   cpu缓存行数据的四种状态
+6. 可见性
+7. 有序性
 
 
+
+缓存行填充：
+
+Ringbuffer
 
 
 
@@ -134,3 +145,14 @@ java -XX:+PrintFlagsWithComments //只有debug版本能使用
 
 
 jstack ： 线程状态打印   检测死锁
+
+
+
+### 并发并行
+
+![img](/Users/michael/dev/demo/luoyan/jvm/image/并发并行.jpg)
+
+并发和并行都可以是很多个线程，就看这些线程能不能同时被（多个）cpu执行，如果可以就说明是并行，而并发是多个线程被（一个）cpu 轮流切换着执行。
+
+
+
