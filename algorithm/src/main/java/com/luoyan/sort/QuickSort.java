@@ -18,8 +18,8 @@ public class QuickSort {
 
         if (left == right) {
             return;
-        }
-        int exchange = partition(arr, left, right);
+    }
+    int exchange = partition(arr, left, right);
         //左边
         sort(arr, left, exchange);
         //右边

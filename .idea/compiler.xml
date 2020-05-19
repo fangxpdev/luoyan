@@ -21,6 +21,7 @@
         <module name="dubbo" />
         <module name="concurrent" />
         <module name="mysql" />
+        <module name="tomcat" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -45,6 +46,7 @@
       <module name="sharding" options="-parameters" />
       <module name="spring" options="-parameters" />
       <module name="spring-boot" options="-parameters" />
+      <module name="tomcat" options="-parameters" />
       <module name="zookeeper" options="-parameters" />
     </option>
   </component>
