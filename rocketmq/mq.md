@@ -107,9 +107,17 @@ broker收到消息，存储消息
   AllocateMappedFileService为一下线程，死循环执行mmapOperation
 	文件预热:
 	会在每隔pageCache大小的buffer中写入一个0
-	文件内存锁定：
+	文件内存锁定： mlock
 	(防止预热过的文件被操作系统调到swap空间，读取的时候产生缺页中断异常)
 
+```
+
+
+
+### consumeQueue及index构建
+
+```
+ReputMessageService
 ```
 
 
@@ -165,5 +173,60 @@ GroupCommitService:doCommit
 
 ### 消息消费
 
-nameServer
+> 1、为什么说DefaultMQPushConsumer本质还是pull？既然是pull，那rocketmq是怎么保证消息消费的实时性？
+> 当consumer启动时，RebalanceService使得了pullRequestQueue有值，PullMessageService的线程不停地从pullRequestQueue中take messagequene拉取消息处理，处理完之后继续往pullRequestQueue存放messagequene，从而使得pullRequestQueue不会因为没有值而阻塞。这里也可以基本解释了前面抛出的问题1（pullRequestQueue每次take完因此，都会再继续put messagequeue，而拉取消息实际又是一个while不停地循环去拉取消息，这样就保证了消费消息的及时性）。
+
+> 2、消费消息是否存在超时问题?超时了会重试吗?
+>
+> 存在超时，超时status=ReconsumeLater，发送%RETRY%消息给broker；当成延时消息，默认延时等级是3
+
+> 3、什么情况下代表消费消息失败？怎么样又代表消费消息成功？
+
+> 4、为什么说consumer端消费消息要保证幂等？什么情况下会重复消费？
+>
+> 消息可能重复消息；更新offset是先更新consumer端内存然后持久化，由OffsetStore定时提交给broker，存在丢失风险；
+
+> 5、消费消息失败了是怎么实现重试的？
+>
+> 失败的消息会将topic转换为%RETRY%+groupName的topic名称发送给broker，延时消息；到达时间点将延时消息转为重试消息；如果发送broker失败则执行consumer重新消息一遍
+
+> 6、单线程消息拉取会成为瓶颈吗？
+>
+> 一般不会，消息拉取的网络请求都是交给netty的work线程完成，异步完成后回调，然后在pullRequestQueue添加新的pullRequest
+
+
+
+### 延时消息
+
+consumequeue
+├── SCHEDULE_TOPIC_XXXX
+│  ├── 0
+│  │  └── 00000000000000000000
+│  ├── 1
+│  │  └── 00000000000000000000
+│  ├── 2
+│  │  └── 00000000000000000000
+│  ├── 3
+│  │  └── 00000000000000000000
+│  ├── 4
+│  │  └── 00000000000000000000
+    .....
+    .....
+├── DelayTopicTest
+│  ├── 0
+│  │  └── 00000000000000000000
+│  ├── 1
+│  │  └── 00000000000000000000
+│  ├── 2
+│  │  └── 00000000000000000000
+│  └── 3
+│      └── 00000000000000000000
+
+发送的延时消息都会存放到同一个topic（SCHEDULE_TOPIC_XXXX）下；每个延时级别对一个queue，不同的队列序号下（**queueId=delayLevel-1**）；
+
+总结：
+
+所有的延迟消息由producer发出之后，都会存放到同一个topic（SCHEDULE_TOPIC_XXXX）下，不同的延迟级别会对应不同的队列序号，当延迟时间到之后，由定时线程读取转换为普通的消息存到真实指定的topic下，此时对于consumer端此消息才可见，从而被consumer消费。
+
+
 

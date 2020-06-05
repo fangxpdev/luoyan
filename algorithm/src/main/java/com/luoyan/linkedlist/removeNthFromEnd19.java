@@ -1,5 +1,7 @@
 package com.luoyan.linkedlist;
 
+import com.luoyan.ListNode;
+
 public class removeNthFromEnd19 {
 
     public static ListNode removeNthFromEnd(ListNode head, int n) {

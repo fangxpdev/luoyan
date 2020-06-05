@@ -1,5 +1,7 @@
 package com.luoyan.linkedlist;
 
+import com.luoyan.ListNode;
+
 public class ReverseList206 {
 
     /**

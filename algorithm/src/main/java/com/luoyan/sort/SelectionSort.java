@@ -5,7 +5,7 @@ public class SelectionSort {
     public static void main(String[] args) {
 
         int[] nums = new int[]{2, 1, 5, 3, 8, 6, 9, 4};
-        sort(nums, 0);
+        sort2(nums);
         for (int num : nums) {
             System.out.print(num + ",");
         }
@@ -33,6 +33,19 @@ public class SelectionSort {
         nums[minIndex] = temp;
         if (index < nums.length - 2) {
             sort(nums, ++index);
+        }
+    }
+
+
+    public static void sort2(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            int minPosition = i;
+            for (int j = i; j < nums.length; j++) {
+                if (nums[j] < nums[minPosition]) {
+                    minPosition = j;
+                }
+            }
+            ArrayUtils.swap(nums, i, minPosition);
         }
     }
 

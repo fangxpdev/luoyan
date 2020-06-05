@@ -1,7 +1,7 @@
 package com.luoyan.sort;
 
 /**
- * 选择排序
+ * 插入排序
  * 时间复杂度 n^2
  */
 public class InsertionSort {

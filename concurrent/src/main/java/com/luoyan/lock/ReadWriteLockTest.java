@@ -20,9 +20,10 @@ public class ReadWriteLockTest {
 
     public static void main(String[] args) {
 
+        new Thread(ReadWriteLockTest::read).start();
+
         new Thread(ReadWriteLockTest::write).start();
 
-        new Thread(ReadWriteLockTest::read).start();
 
         new Thread(ReadWriteLockTest::read).start();
 

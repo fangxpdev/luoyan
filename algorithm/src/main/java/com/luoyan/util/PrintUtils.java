@@ -1,6 +1,6 @@
 package com.luoyan.util;
 
-import com.luoyan.linkedlist.ListNode;
+import com.luoyan.ListNode;
 
 public class PrintUtils {
 

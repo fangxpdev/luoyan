@@ -24,8 +24,8 @@ public class BlockStack {
 
     public void put(int val) {
 
+        lock.lock();
         try {
-            lock.lock();
             while (count == capacity) {
                 con.await();
             }

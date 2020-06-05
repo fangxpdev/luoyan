@@ -7,6 +7,7 @@ public class CyclicBarrierTest {
 
     static CyclicBarrier c = new CyclicBarrier(2, new A());
 
+
     public static void main(String[] args) {
 
         new Thread(() -> {

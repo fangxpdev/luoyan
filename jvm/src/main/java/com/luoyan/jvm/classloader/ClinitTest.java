@@ -13,17 +13,16 @@ public class ClinitTest {
 //        MyObject object = new MyObject();
 
 //        Child chil = new Child();
-
+//
 //        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
 //        System.out.println(classLoader);
-//
+////
 //        Class<?> clazz = classLoader.loadClass("com.luoyan.jvm.classloader.ClinitTest$MyObject");
 //        System.out.println(clazz);
-//
+////
 //        System.out.println(clazz.newInstance());
 
         Class.forName("com.luoyan.jvm.classloader.ClinitTest$MyObject");
-
     }
 
     static class MyObject {
@@ -33,8 +32,8 @@ public class ClinitTest {
         static {
             System.out.println(x);
             x++;
-//            System.out.println(y);
             y = 200;
+//            System.out.println(y);
         }
 
         private static int y = 20;

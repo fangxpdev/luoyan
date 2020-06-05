@@ -156,3 +156,102 @@ jstack ： 线程状态打印   检测死锁
 
 
 
+### java 动态连接
+
+符号引用：
+
+java class文件编译字节码指令文件：
+
+```java
+public class X {
+  public void foo() {
+    bar();
+  }
+
+  public void bar() { }
+}
+```
+
+它编译出来的Class文件的文本表现形式如下：
+
+```text
+Classfile /private/tmp/X.class
+  Last modified Jun 13, 2015; size 372 bytes
+  MD5 checksum 8abb9cbb66266e8bc3f5eeb35c3cc4dd
+  Compiled from "X.java"
+public class X
+  SourceFile: "X.java"
+  minor version: 0
+  major version: 51
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #4.#16         //  java/lang/Object."<init>":()V
+   #2 = Methodref          #3.#17         //  X.bar:()V
+   #3 = Class              #18            //  X
+   #4 = Class              #19            //  java/lang/Object
+   #5 = Utf8               <init>
+   #6 = Utf8               ()V
+   #7 = Utf8               Code
+   #8 = Utf8               LineNumberTable
+   #9 = Utf8               LocalVariableTable
+  #10 = Utf8               this
+  #11 = Utf8               LX;
+  #12 = Utf8               foo
+  #13 = Utf8               bar
+  #14 = Utf8               SourceFile
+  #15 = Utf8               X.java
+  #16 = NameAndType        #5:#6          //  "<init>":()V
+  #17 = NameAndType        #13:#6         //  bar:()V
+  #18 = Utf8               X
+  #19 = Utf8               java/lang/Object
+{
+  public X();
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0       
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return        
+      LineNumberTable:
+        line 1: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       5     0  this   LX;
+
+  public void foo();
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0       
+         1: invokevirtual #2                  // Method bar:()V
+         4: return        
+      LineNumberTable:
+        line 3: 0
+        line 4: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       5     0  this   LX;
+
+  public void bar();
+    flags: ACC_PUBLIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return        
+      LineNumberTable:
+        line 6: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       1     0  this   LX;
+}
+```
+
+可以看到常量池中一条条的字节码指定，
+
+常量池中就是各种符号引用地址；
+
+那么虚拟机就必须解析这个符号引用。在解析时，虚拟机执行两个基本任务
+
+1.查找被引用的类，（如果必要的话就装载它）
+
+2.将符号引用替换为直接引用，这样当它以后再次遇到相同的引用时，它就可以立即使用这个直接引用，而不必花时间再次解析这个符号引用了。
+

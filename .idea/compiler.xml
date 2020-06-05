@@ -8,13 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jvm" />
+        <module name="docker" />
         <module name="rocketmq" />
+        <module name="distribute" />
         <module name="redis" />
         <module name="netty" />
-        <module name="disruptor" />
-        <module name="zookeeper" />
-        <module name="sharding" />
         <module name="spring" />
+        <module name="disruptor" />
+        <module name="java-agent" />
+        <module name="sharding" />
+        <module name="mybatis" />
+        <module name="zookeeper" />
         <module name="spring-boot" />
         <module name="jdbc" />
         <module name="algorithm" />
@@ -36,9 +40,13 @@
       <module name="algorithm" options="-parameters" />
       <module name="concurrent" options="-parameters" />
       <module name="disruptor" options="-parameters" />
+      <module name="distribute" options="-parameters" />
+      <module name="docker" options="-parameters" />
       <module name="dubbo" options="-parameters" />
+      <module name="java-agent" options="-parameters" />
       <module name="jdbc" options="-parameters" />
       <module name="jvm" options="-parameters" />
+      <module name="mybatis" options="-parameters" />
       <module name="mysql" options="-parameters" />
       <module name="netty" options="-parameters" />
       <module name="redis" options="-parameters" />

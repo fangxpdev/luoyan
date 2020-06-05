@@ -70,3 +70,10 @@ Coyote主要功能：协议解析
 
 ![image-20200519142353652](./image/请求流程示意图.png)s
 
+
+
+```text
+请求---->Acceptor  [socketChannel = serverSock.accept()] --注册--Poller-->SynchronizedQueue<PollerEvent> events 
+Poller.run --->处理实际请求
+```
+
